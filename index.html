@@ -1,1 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>My YouTube Channels | BhaktiVatavaran</title>
+
+    <meta name="description"
+          content="Follow my YouTube channels for Bhakti, spiritual content, culture, travel and more.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+
+            background:
+                radial-gradient(circle at top, #ffb347 0%, transparent 35%),
+                linear-gradient(135deg, #fff4df, #f9d7a5, #fff8ed);
+
+            color: #3b2412;
+
+            display: flex;
+            justify-content: center;
+
+            padding: 25px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+
+        /* Profile */
+
+        .profile {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 105px;
+            height: 105px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 48px;
+
+            background: linear-gradient(135deg, #ff8c00, #ffcc70);
+
+            border: 5px solid rgba(255,255,255,0.8);
+
+            box-shadow:
+                0 10px 30px rgba(150, 83, 20, 0.25);
+        }
+
+        .profile h1 {
+            margin-top: 15px;
+
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .username {
+            color: #a05a16;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+
+        .description {
+            margin: 15px auto 0;
+
+            max-width: 380px;
+
+            font-size: 14px;
+            line-height: 1.7;
+
+            color: #684a32;
+        }
+
+        /* Section */
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+
+            color: #9b5a17;
+        }
+
+        /* Channel Card */
+
+        .channel {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            text-decoration: none;
+
+            background: rgba(255,255,255,0.72);
+
+            border: 1px solid rgba(255,255,255,0.9);
+
+            border-radius: 18px;
+
+            padding: 15px;
+
+            margin-bottom: 15px;
+
+            color: #3b2412;
+
+            box-shadow:
+                0 8px 25px rgba(120, 72, 20, 0.10);
+
+            backdrop-filter: blur(10px);
+
+            transition: 0.3s ease;
+        }
+
+        .channel:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 35px rgba(120, 72, 20, 0.18);
+        }
+
+        .channel-icon {
+            width: 55px;
+            height: 55px;
+
+            flex-shrink: 0;
+
+            border-radius: 15px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 27px;
+
+            background: #fff0d2;
+        }
+
+        .channel-content {
+            text-align: left;
+
+            margin-left: 15px;
+
+            flex: 1;
+        }
+
+        .channel-content h2 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .channel-content p {
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: #80644b;
+        }
+
+        .arrow {
+            font-size: 22px;
+
+            color: #a05a16;
+        }
+
+        /* YouTube */
+
+        .youtube {
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.9),
+                rgba(255,240,225,0.8)
+            );
+        }
+
+        /* Social */
+
+        .social {
+            margin-top: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+
+            font-size: 20px;
+
+            background: rgba(255,255,255,0.75);
+
+            color: #6e401a;
+
+            border: 1px solid rgba(255,255,255,0.9);
+
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-4px);
+            background: #ffffff;
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 30px;
+
+            font-size: 11px;
+
+            color: #96795e;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 400px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .profile h1 {
+                font-size: 22px;
+            }
+
+            .channel {
+                padding: 13px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PROFILE -->
+
+    <div class="profile">
+
+        <div class="profile-image">
+            🪔
+        </div>
+
+        <h1>My YouTube Channels</h1>
+
+        <div class="username">
+            @BhaktiVatavaran
+        </div>
+
+        <p class="description">
+            🙏 Devotion • Spirituality • Culture • Tradition
+            <br>
+            Explore my YouTube channels and join the journey.
+        </p>
+
+    </div>
+
+
+    <!-- CHANNELS -->
+
+    <div class="section-title">
+        🎬 Watch My Channels
+    </div>
+
+
+    <!-- CHANNEL 1 -->
+
+    <a
+        class="channel youtube"
+        href="https://www.youtube.com/@BhaktiVatavaran"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="channel-icon">
+            🪔
+        </div>
+
+        <div class="channel-content">
+
+            <h2>BhaktiVatavaran</h2>
+
+            <p>
+                Bhakti • Devotion • Spirituality • Culture
+            </p>
+
+        </div>
+
+        <div class="arrow">
+            →
+        </div>
+
+    </a>
+
+
+    <!-- CHANNEL 2 -->
+
+    <a
+        class="channel youtube"
+        href="https://www.youtube.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <div class="channel-icon">
+            ▶️
+        </div>
+
+        <div class="channel-content">
+
+            <h2>My Second YouTube Channel</h2>
+
+            <p>
+                Click to visit my second channel
+            </p>
+
+        </div>
+
+        <div class="arrow">
+            →
+        </div>
+
+    </a>
+
+
+    <!-- SOCIAL -->
+
+    <div class="social">
+
+        <div class="section-title">
+            Follow Me
+        </div>
+
+        <div class="social-links">
+
+            <!-- Replace with your Instagram -->
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+                📷
+            </a>
+
+
+            <!-- Replace with your YouTube -->
+
+            <a
+                href="https://www.youtube.com/@BhaktiVatavaran"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+            >
+                ▶️
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        © 2026 • BhaktiVatavaran
+    </footer>
+
+</div>
+
+</body>
+</html>

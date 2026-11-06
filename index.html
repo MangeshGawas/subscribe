@@ -47,32 +47,68 @@
 
         /* Profile */
 
-        .profile {
+.profile {
             margin-top: 20px;
             margin-bottom: 30px;
         }
 
         .profile-image {
+            position: relative; /* Required for absolute positioning of pseudo-elements */
             width: 105px;
             height: 105px;
-
             margin: auto;
-
             border-radius: 50%;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             font-size: 48px;
-
             background: linear-gradient(135deg, #ff8c00, #ffcc70);
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(150, 83, 20, 0.25);
+            overflow: hidden; /* Clips the rotating gradient into a circle */
+        }
 
-            border: 5px solid rgba(255,255,255,0.8);
+        /* Rotating Gradient Border Layer */
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            inset: -150%; /* Large enough to rotate seamlessly without clipping edges */
+            background: conic-gradient(
+                #ff0055, 
+                #ff7700, 
+                #00e5ff, 
+                #7800ff, 
+                #ff0055
+            );
             animation: rotate-neon 4s linear infinite;
+            z-index: 0;
+        }
 
-            box-shadow:
-                0 10px 30px rgba(150, 83, 20, 0.25);
+        /* Inner Mask Layer (Sets the border thickness) */
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8c00, #ffcc70); /* Keeps your inner background style */
+            margin: 4px; /* Controls border thickness (adjust 4px as needed) */
+            z-index: 1;
+        }
+
+        /* Keeps your avatar icon/text properly layered on top */
+        .profile-image > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Rotation Keyframes (if not already defined in your stylesheet) */
+        @keyframes rotate-neon {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .profile h1 {

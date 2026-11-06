@@ -114,63 +114,20 @@
 
         /* Channel Card */
 
-        .channel {
-            position: relative;
-
-            display: flex;
-            align-items: center;
-
-            text-decoration: none;
-
-            background: rgba(255,255,255,0.72);
-
-            border: 1px solid rgba(255,255,255,0.9);
-
-            border-radius: 18px;
-
-            padding: 15px;
-
-            margin-bottom: 15px;
-
-            color: #3b2412;
-
-            box-shadow:
-                0 8px 25px rgba(120, 72, 20, 0.10);
-
-            backdrop-filter: blur(10px);
-
-            transition: 0.3s ease;
-        }
-
-        .channel:hover {
-            transform: translateY(-4px);
-
-            box-shadow:
-                0 15px 35px rgba(120, 72, 20, 0.18);
-        }
-
-       @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-3px);
-    }
-}
-
+       /* Container adjustment to host the rotating neon border */
 .channel {
     position: relative;
     display: flex;
     align-items: center;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.85); /* Slightly darker/opaque for text readability */
     border-radius: 18px;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: #3b2412;
     box-shadow: 0 8px 25px rgba(120, 72, 20, 0.10);
     backdrop-filter: blur(10px);
+    overflow: hidden; /* Clips the rotating gradient circle to the border curve */
     
     /* Smooth transition for hover effects */
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
@@ -181,31 +138,85 @@
     animation: float 4s ease-in-out infinite;
 }
 
-/* Stagger the animation timing for multiple cards so they don't move in sync */
+/* Stagger animation timing for multiple cards */
 .channel:nth-child(even) {
     animation-delay: 2s;
 }
 
+/* --- CONTINUOUS ROTATING NEON BORDER --- */
+
+/* Rotating Gradient Layer (Creates the actual moving border line) */
+.channel::before {
+    content: '';
+    position: absolute;
+    inset: -150%; /* Large enough to cover rotation without clipping edges */
+    background: conic-gradient(
+        #ff0055, 
+        #ff7700, 
+        #00e5ff, 
+        #7800ff, 
+        #ff0055
+    );
+    animation: rotate-neon 4s linear infinite;
+    z-index: 0;
+}
+
+/* Outer Soft Glow Layer */
+.channel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: inherit; /* Copies the card's background color */
+    margin: 2px; /* Set your border width here (2px thick neon line) */
+    z-index: 1;
+}
+
+/* Keeps all channel content (text, icons, images) on top of the neon layers */
+.channel > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Rotate Keyframes */
+@keyframes rotate-neon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- FLOATING & HOVER ANIMATIONS --- */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
 .channel:hover {
-    /* Lifts higher and adds a spring-like bounce */
     transform: translateY(-6px) scale(1.01);
-    
-    /* Deepens the shadow and adds a slight warm glow */
-    box-shadow: 0 20px 40px rgba(120, 72, 20, 0.22);
-    
-    /* Brightens up slightly on hover to feel responsive */
-    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(120, 72, 20, 0.22),
+                0 0 15px rgba(255, 0, 85, 0.3); /* Adds extra neon hover ambient light */
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .channel:active {
-    /* Gives a satisfying "pressed down" feel right before clicking */
     transform: translateY(-2px) scale(0.99);
 }
-        .channel-content h2 {
-            font-size: 16px;
-            font-weight: 600;
-        }
 
+.channel-content h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+        /* --- END --- */
+
+        
         .channel-content p {
             margin-top: 3px;
 

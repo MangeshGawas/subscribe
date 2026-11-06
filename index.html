@@ -149,31 +149,58 @@
                 0 15px 35px rgba(120, 72, 20, 0.18);
         }
 
-        .channel-icon {
-            width: 55px;
-            height: 55px;
+       @keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
 
-            flex-shrink: 0;
+.channel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 18px;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: #3b2412;
+    box-shadow: 0 8px 25px rgba(120, 72, 20, 0.10);
+    backdrop-filter: blur(10px);
+    
+    /* Smooth transition for hover effects */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                background 0.4s ease;
+                
+    /* Continuous gentle floating motion */
+    animation: float 4s ease-in-out infinite;
+}
 
-            border-radius: 15px;
+/* Stagger the animation timing for multiple cards so they don't move in sync */
+.channel:nth-child(even) {
+    animation-delay: 2s;
+}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+.channel:hover {
+    /* Lifts higher and adds a spring-like bounce */
+    transform: translateY(-6px) scale(1.01);
+    
+    /* Deepens the shadow and adds a slight warm glow */
+    box-shadow: 0 20px 40px rgba(120, 72, 20, 0.22);
+    
+    /* Brightens up slightly on hover to feel responsive */
+    background: rgba(255, 255, 255, 0.9);
+}
 
-            font-size: 27px;
-
-            background: #fff0d2;
-        }
-
-        .channel-content {
-            text-align: left;
-
-            margin-left: 15px;
-
-            flex: 1;
-        }
-
+.channel:active {
+    /* Gives a satisfying "pressed down" feel right before clicking */
+    transform: translateY(-2px) scale(0.99);
+}
         .channel-content h2 {
             font-size: 16px;
             font-weight: 600;
@@ -408,7 +435,7 @@
 
 
     <footer>
-        © 2026 • BhaktiVatavaran
+        © 2018-2026 • BhaktiVatavaran
     </footer>
 
 </div>

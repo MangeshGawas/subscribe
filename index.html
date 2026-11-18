@@ -328,6 +328,37 @@
             color: #96795e;
         }
 
+
+        /* Visitor Counter */
+        .visitor-counter {
+            margin: 25px auto 0;
+            padding: 15px 20px;
+            max-width: 260px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 8px 25px rgba(120, 72, 20, 0.10);
+        }
+
+        .visitor-counter-label {
+            color: #80644b;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .visitor-counter-number {
+            margin-top: 5px;
+            color: #a05a16;
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .visitor-counter-note {
+            margin-top: 3px;
+            color: #96795e;
+            font-size: 10px;
+        }
+
         /* Mobile */
 
         @media (max-width: 400px) {
@@ -418,7 +449,6 @@
     <a
         class="channel youtube"
         href="https://www.youtube.com/@JungleDetectives007?sub_confirmation=1"
-"
         target="_blank"
         rel="noopener noreferrer"
     >
@@ -482,11 +512,62 @@
     </div>
 
 
+
+    <!-- VISITOR COUNTER -->
+    <div class="visitor-counter" aria-live="polite">
+        <div class="visitor-counter-label">👥 TOTAL SITE VISITS</div>
+        <div class="visitor-counter-number" id="visitorCount">Loading...</div>
+        <div class="visitor-counter-note">Thank you for visiting BhaktiVatavaran 🙏</div>
+    </div>
+
     <footer>
         © 2018-2026 • BhaktiVatavaran
     </footer>
 
 </div>
+
+
+    <!-- CounterAPI V2 visitor counter -->
+    <!-- Replace the two configuration values below with your CounterAPI details. -->
+<script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+
+<script>
+async function updateVisitorCount() {
+
+    const countElement = document.getElementById("visitorCount");
+
+    try {
+
+        // Public counter: no browser-side API token
+        const counter = new Counter({
+            workspace: "aitrainings-team-6280",
+            timeout: 10000
+        });
+
+        const result = await counter.up("first-counter-6280");
+
+        console.log("CounterAPI response:", result);
+
+        const totalVisits =
+            result?.data?.up_count ?? result?.value;
+
+        if (totalVisits === undefined) {
+            throw new Error("Counter value missing in API response");
+        }
+
+        countElement.textContent =
+            Number(totalVisits).toLocaleString();
+
+    } catch (error) {
+
+        console.error("Visitor counter error:", error);
+
+        countElement.textContent = "Unavailable";
+    }
+}
+
+updateVisitorCount();
+</script>
 
 </body>
 </html>

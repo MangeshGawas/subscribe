@@ -533,41 +533,51 @@
 
 <script>
 async function updateVisitorCount() {
-
     const countElement = document.getElementById("visitorCount");
 
+    if (!countElement) return;
+
+    const counter = new Counter({
+        workspace: "aitrainings-team-6280",
+        timeout: 10000
+    });
+
+    const counterName = "first-counter-6280";
+    const sessionKey = "bhakti_vatavar​an_counted";
+
     try {
+        const alreadyCounted =
+            sessionStorage.getItem(sessionKey);
 
-        // Public counter: no browser-side API token
-        const counter = new Counter({
-            workspace: "aitrainings-team-6280",
-            timeout: 10000
-        });
+        let result;
 
-        const result = await counter.up("first-counter-6280");
+        if (!alreadyCounted) {
+            result = await counter.up(counterName);
 
-        console.log("CounterAPI response:", result);
+            sessionStorage.setItem(sessionKey, "true");
+        } else {
+            result = await counter.get(counterName);
+        }
 
         const totalVisits =
             result?.data?.up_count ?? result?.value;
 
         if (totalVisits === undefined) {
-            throw new Error("Counter value missing in API response");
+            throw new Error("Counter value missing");
         }
 
         countElement.textContent =
             Number(totalVisits).toLocaleString();
 
     } catch (error) {
-
         console.error("Visitor counter error:", error);
-
         countElement.textContent = "Unavailable";
     }
 }
 
 updateVisitorCount();
 </script>
+
 
 </body>
 </html>
